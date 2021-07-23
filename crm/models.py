@@ -21,6 +21,7 @@ STATUS = [
 
 class Client(models.Model):
 
+    unic_name = models.TextField(max_length=20, default=1)
     first_name = models.TextField(max_length=20)
     second_name = models.TextField(max_length=50)
     middle_name = models.TextField(max_length=20)
@@ -32,6 +33,7 @@ class Client(models.Model):
 
 class Employee(models.Model):
 
+    unic_name = models.TextField(max_length=20, default=1)
     first_name = models.TextField(max_length=20)
     second_name = models.TextField(max_length=50)
     middle_name = models.TextField(max_length=20)
