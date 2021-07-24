@@ -21,7 +21,7 @@ STATUS = [
 
 class Client(models.Model):
 
-    unic_name = models.TextField(max_length=20, default=1)
+    unic_name = models.IntegerField(unique=True)
     first_name = models.TextField(max_length=20)
     second_name = models.TextField(max_length=50)
     middle_name = models.TextField(max_length=20)
@@ -33,7 +33,7 @@ class Client(models.Model):
 
 class Employee(models.Model):
 
-    unic_name = models.TextField(max_length=20, default=1)
+    unic_name = models.IntegerField(unique=True)
     first_name = models.TextField(max_length=20)
     second_name = models.TextField(max_length=50)
     middle_name = models.TextField(max_length=20)
@@ -46,13 +46,13 @@ class Employee(models.Model):
     
 class Application(models.Model):
 
-    number = models.TextField(max_length=20)
+    number = models.IntegerField(unique=True)
     client = models.ForeignKey(Client, on_delete=CASCADE)
     employee = models.ForeignKey(Employee, on_delete=CASCADE, null=True, blank=True)
     apl_type = models.CharField(choices=TYPE, max_length=12)
     status = models.CharField(choices=STATUS, max_length=7)
-    start_date = models.DateTimeField(auto_now_add=True)
-    end_date = models.DateTimeField(help_text="Deadline")
+    start_date = models.DateField(auto_now=True)
+    end_date = models.DateField(help_text="Deadline")
 
     def __str__(self):
         return self.number

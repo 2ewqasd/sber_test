@@ -8,6 +8,8 @@ router.register(r'employee', views.EmployeeViewSet, basename='employee')
 router.register(r'application', views.ApplicationViewSet, basename='application')
 
 
+
 urlpatterns = [
     path('', include(router.urls)),
+     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
