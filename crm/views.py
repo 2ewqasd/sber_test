@@ -9,7 +9,7 @@ from .serializers import ClientSerializer, EmployeeSerializer, ApplicationSerial
 class СlientViewSet(viewsets.ModelViewSet):
     
     serializer_class = ClientSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAdminUser|permissions.IsAuthenticated]
     
     def get_queryset(self):
         queryset = Client.objects.all()
@@ -39,7 +39,7 @@ class СlientViewSet(viewsets.ModelViewSet):
 class EmployeeViewSet(viewsets.ModelViewSet):
 
     serializer_class = EmployeeSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAdminUser|permissions.IsAuthenticated]
 
     def get_queryset(self):
         queryset = Employee.objects.all()
@@ -72,7 +72,7 @@ class EmployeeViewSet(viewsets.ModelViewSet):
 class ApplicationViewSet(viewsets.ModelViewSet):
     
     serializer_class = ApplicationSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAdminUser|permissions.IsAuthenticated]
 
     def get_queryset(self):
         queryset = Application.objects.all()

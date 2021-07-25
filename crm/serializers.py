@@ -8,7 +8,7 @@ from .models import Application
 class ClientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Client
-        fields = ['id', 'unic_name', 'first_name', 'middle_name', 'second_name', 'email', 'tg_nick']
+        fields = ['unic_name', 'first_name', 'middle_name', 'second_name', 'email', 'tg_nick']
 
 
 class EmployeeSerializer(serializers.ModelSerializer):
