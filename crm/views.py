@@ -7,6 +7,9 @@ from .models import Client, Employee, Application
 from .serializers import ClientSerializer, EmployeeSerializer, ApplicationSerializer
 
 class СlientViewSet(viewsets.ModelViewSet):
+    '''
+    Typical filters and permission access
+    '''
     
     serializer_class = ClientSerializer
     permission_classes = [permissions.IsAdminUser|permissions.IsAuthenticated]
@@ -37,6 +40,9 @@ class СlientViewSet(viewsets.ModelViewSet):
     
 
 class EmployeeViewSet(viewsets.ModelViewSet):
+    '''
+    Typical filters and permission access
+    '''
 
     serializer_class = EmployeeSerializer
     permission_classes = [permissions.IsAdminUser|permissions.IsAuthenticated]
@@ -70,6 +76,22 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     
 
 class ApplicationViewSet(viewsets.ModelViewSet):
+
+    '''
+    Typical permission access and filters not include timeline
+    TIMELINE:
+    Choice what we will include
+    fs,fe - filter_start,filter_end
+    ds,de - date_start, date_end
+    ('fs', 'ds', 'de', 'fe')
+    date_start__gte, date_end__lte
+    ('ds', 'fs', 'fe', 'de')
+    date_start_lte, date_end__gt
+    ('ds', 'fs', 'de', 'fe')
+    date_end__range
+    ('fs', 'ds', 'fe', 'de')
+    date_start__range 
+    '''
     
     serializer_class = ApplicationSerializer
     permission_classes = [permissions.IsAdminUser|permissions.IsAuthenticated]
@@ -92,6 +114,9 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         if employee:
             queryset = queryset.filter(employee=employee)
         if start_date and end_date:
+            '''
+            TIMELINE START HERE
+            '''
             queryset = queryset.filter(
                 Q(start_date__gte=start_date, end_date__lte=end_date) |
                 Q(start_date__lte=start_date, end_date__gte=end_date) |

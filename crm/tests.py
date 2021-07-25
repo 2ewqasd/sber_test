@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User 
-from django.test import TestCase
+from django.test import TestCase, client
 from django.urls import reverse
 from .models import Client, Application, Employee
 
@@ -77,11 +77,11 @@ class ClientTest(TestCase):
         response = self.client.get('')
         self.assertEqual(response.status_code, 401)
 
-    def test_token(self):
+    def test_get_token(self):
         factory = APIRequestFactory()
         user = User.objects.get(username='testuser')
         request = factory.get('')
         force_authenticate(request, user=user, token=user.auth_token)
         
-
+    
         

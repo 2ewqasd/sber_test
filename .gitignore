@@ -141,3 +141,4 @@ bin/
 pyvenv.cfg
 
 migrations/
+.vscode/

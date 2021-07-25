@@ -5,11 +5,13 @@ from django.contrib.auth.models import User
 from .models import Client, Employee, Application
 
 class ClientInline(admin.StackedInline):
+    'Include client like user in admin'
     model = Client
     can_delete = False
     verbose_name_plural = 'client'
 
 class EmployeeInline(admin.StackedInline):
+    'Include employee like user in admin'
     model = Employee
     can_delete = False
     verbose_name_plural = 'employee'

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'crm.apps.CrmConfig',
     'rest_framework',
     'rest_framework.authtoken',
+    'django.contrib.admindocs',
 ]
 
 MIDDLEWARE = [
