@@ -1,5 +1,6 @@
 from django.db import models
-from django.db.models.deletion import CASCADE
+from django.contrib.auth.models import User
+
 
 SPEC = [
     ('consultant', 'Consultant'),
@@ -21,6 +22,7 @@ STATUS = [
 
 class Client(models.Model):
 
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     unic_name = models.IntegerField(unique=True)
     first_name = models.TextField(max_length=20)
     second_name = models.TextField(max_length=50)
@@ -33,6 +35,7 @@ class Client(models.Model):
 
 class Employee(models.Model):
 
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     unic_name = models.IntegerField(unique=True)
     first_name = models.TextField(max_length=20)
     second_name = models.TextField(max_length=50)
@@ -47,12 +50,12 @@ class Employee(models.Model):
 class Application(models.Model):
 
     number = models.IntegerField(unique=True)
-    client = models.ForeignKey(Client, on_delete=CASCADE)
-    employee = models.ForeignKey(Employee, on_delete=CASCADE, null=True, blank=True)
+    client = models.ForeignKey(Client, on_delete=models.deletion.CASCADE)
+    employee = models.ForeignKey(Employee, on_delete=models.deletion.CASCADE, null=True, blank=True)
     apl_type = models.CharField(choices=TYPE, max_length=12)
     status = models.CharField(choices=STATUS, max_length=7)
     start_date = models.DateField(auto_now=True)
     end_date = models.DateField(help_text="Deadline")
 
     def __str__(self):
-        return self.number
+        return str(self.number)
