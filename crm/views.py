@@ -6,14 +6,15 @@ from rest_framework import viewsets
 from .models import Client, Employee, Application
 from .serializers import ClientSerializer, EmployeeSerializer, ApplicationSerializer
 
+
 class СlientViewSet(viewsets.ModelViewSet):
     '''
     Typical filters and permission access
     '''
-    
+
     serializer_class = ClientSerializer
-    permission_classes = [permissions.IsAdminUser|permissions.IsAuthenticated]
-    
+    permission_classes = [permissions.IsAdminUser | permissions.IsAuthenticated]
+
     def get_queryset(self):
         queryset = Client.objects.all()
         username = self.request.query_params.get('unic_name')
@@ -32,12 +33,11 @@ class СlientViewSet(viewsets.ModelViewSet):
         if fam is not None:
             queryset = queryset.filter(second_name=fam)
         if emaill is not None:
-            queryset = queryset.filter(email=emaill)    
+            queryset = queryset.filter(email=emaill)
         if tg is not None:
-            queryset = queryset.filter(tg_nick=tg)    
+            queryset = queryset.filter(tg_nick=tg)
         return queryset
-        
-    
+
 
 class EmployeeViewSet(viewsets.ModelViewSet):
     '''
@@ -45,7 +45,7 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     '''
 
     serializer_class = EmployeeSerializer
-    permission_classes = [permissions.IsAdminUser|permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAdminUser | permissions.IsAuthenticated]
 
     def get_queryset(self):
         queryset = Employee.objects.all()
@@ -68,12 +68,11 @@ class EmployeeViewSet(viewsets.ModelViewSet):
         if emaill is not None:
             queryset = queryset.filter(email=emaill)
         if spec:
-            queryset = queryset.filter(speciality=spec)    
+            queryset = queryset.filter(speciality=spec)
         if tg is not None:
-            queryset = queryset.filter(tg_nick=tg)    
+            queryset = queryset.filter(tg_nick=tg)
         return queryset
-    
-    
+
 
 class ApplicationViewSet(viewsets.ModelViewSet):
 
@@ -90,11 +89,11 @@ class ApplicationViewSet(viewsets.ModelViewSet):
     ('ds', 'fs', 'de', 'fe')
     date_end__range
     ('fs', 'ds', 'fe', 'de')
-    date_start__range 
+    date_start__range
     '''
-    
+
     serializer_class = ApplicationSerializer
-    permission_classes = [permissions.IsAdminUser|permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAdminUser | permissions.IsAuthenticated]
 
     def get_queryset(self):
         queryset = Application.objects.all()
@@ -129,6 +128,5 @@ class ApplicationViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(start_date=start_date)
 
     #    TODO: date_start < date_end
-        
-        return queryset
 
+        return queryset
