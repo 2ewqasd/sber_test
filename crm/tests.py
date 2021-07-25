@@ -5,6 +5,7 @@ from .models import Client, Application, Employee
 
 
 from rest_framework.test import force_authenticate
+from rest_framework.test import APIRequestFactory
 
 
 class ClientTest(TestCase):
