@@ -20,6 +20,7 @@ from django.views.generic import TemplateView
 
 
 urlpatterns = [
+    path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
     path('', include('crm.urls')),
     path('openapi', get_schema_view(
