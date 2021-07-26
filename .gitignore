@@ -140,5 +140,5 @@ app/staticfiles/
 bin/
 pyvenv.cfg
 
-migrations/
+
 .vscode/
